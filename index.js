@@ -101,8 +101,8 @@ const intervals={};
     }
     client.addEventHandler((event)=>{
         const message = event.message
-        if(message && message.message==='neetcode') {
-            const id = message.peerId.userId
+        if(message?.message && message.message.toLowerCase()==='neetcode') {
+            const id = message.peerId.userId.value
             sendQuestion(id)
             if(intervals[id]){
                 clearInterval(intervals[id])

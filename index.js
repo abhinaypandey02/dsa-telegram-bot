@@ -49,8 +49,8 @@ const intervals={};
     function getSlugFromQuestion(question){
         return question.link.replace('/','')
     }
-    function generateQuestion(title,content,difficulty){
-        return nhm.translate(`<strong>${title} - (${difficulty})</strong><br/>`+content)
+    function generateQuestion(title,content,difficulty, link){
+        return nhm.translate(`<strong>${title} - (${difficulty})</strong><br/>${link}<br/>`+content)
     }
     async function getQuestionMetadata(slug){
         try{
@@ -95,7 +95,8 @@ const intervals={};
         await client.sendMessage(peerId, { message:
                 generateQuestion(data.question.title,
                     data.question.content,
-                    data.question.difficulty
+                    data.question.difficulty,
+                   'https://leetcode.com/problems/'+question.link
                 )
         });
     }

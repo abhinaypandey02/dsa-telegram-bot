@@ -100,9 +100,11 @@ const intervals={};
         });
     }
     client.addEventHandler((event)=>{
-        const message = event.message
-        if(message?.message && message.message.toLowerCase()==='neetcode') {
-            const id = message.peerId.userId.value
+        const eventMessage = event.message
+        const message = typeof eventMessage==="string"?eventMessage:eventMessage?.message
+        console.log(message,eventMessage)
+        const id=eventMessage?.peerId?.userId.value||event?.userId.value
+        if(id&&message?.toLowerCase()==='neetcode') {
             sendQuestion(id)
             if(intervals[id]){
                 clearInterval(intervals[id])
